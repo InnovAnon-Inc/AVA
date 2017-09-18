@@ -4,7 +4,7 @@
 
 __attribute__ ((leaf, nonnull (1, 2), warn_unused_result))
 int set_ava (coord_t *restrict coord, stdcb_t cb, void *arg) {
-	struct timeout;
+	struct timeval timeout;
 	(void) gettimeofday(&timeout, NULL);
 	error_check (getnextsunriseorsunset (&timeout, coord) != 0)
 		return -1;

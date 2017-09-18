@@ -16,20 +16,18 @@ int main (int argc, char *argv[]) {
 	coord_t coord;
 	double zenith;
 	int localoffset;
-	error_check (argc != 7) {
-		printf ("Usage: %s <latitude> <longitude> <altitude> "
-		        "<zenith> <local offset>\n",
-		      argv[0]);
+	error_check (argc != 5) {
+		printf ("Usage: %s <latitude> <longitude> <altitude>\n", argv[0]);
 		return EXIT_FAILURE;
 	}
 
 	error_check (parseDouble (&(coord.latitude),  argv[1]) != 0) return EXIT_FAILURE;
 	error_check (parseDouble (&(coord.longitude), argv[2]) != 0) return EXIT_FAILURE;
 	error_check (parseDouble (&(coord.altitude),  argv[3]) != 0) return EXIT_FAILURE;
-	error_check (parseDouble (&zenith,      argv[4]) != 0) return EXIT_FAILURE;
-	error_check (parseInt    (&localoffset, argv[5]) != 0) return EXIT_FAILURE;
+	/*error_check (parseDouble (&zenith,      argv[4]) != 0) return EXIT_FAILURE;*/
+	/*error_check (parseInt    (&localoffset, argv[5]) != 0) return EXIT_FAILURE;*/
 
-	error_check (set_ava (&coord, cb, argv[6]) != 0)
+	error_check (set_ava (&coord, cb, argv[4]) != 0)
 		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
 }

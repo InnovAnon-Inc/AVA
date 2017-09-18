@@ -7,8 +7,8 @@ libava_la_LDFLAGS = -lsolar
 bin_PROGRAMS = ava
 
 ava_SOURCES = main.c
-ava_test_LDFLAGS = -lsolar
-ava_test_LDADD = libava.la
-#ava_test_CFLAGS =
+ava_LDFLAGS = -lsolar
+ava_LDADD = libava.la
+#ava_CFLAGS =
 
 #AM_CPPFLAGS = -D__STDC_INT64__

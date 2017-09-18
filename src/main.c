@@ -5,7 +5,7 @@
 
 #include <ava.h>
 
-__attribute__ ((leaf, nonnull (1), nothrow, warn_unused_result))
+__attribute__ ((nonnull (1), nothrow, warn_unused_result))
 static int cb (void *arg) {
 	puts (arg);
 	return 0;
@@ -13,10 +13,10 @@ static int cb (void *arg) {
 
 __attribute__ ((nonnull (2), nothrow))
 int main (int argc, char *argv[]) {
-	struct coord_t coord;
+	coord_t coord;
 	double zenith;
 	int localoffset;
-	error_check (argc != 6) {
+	error_check (argc != 7) {
 		printf ("Usage: %s <latitude> <longitude> <altitude> "
 		        "<zenith> <local offset>\n",
 		      argv[0]);
@@ -29,7 +29,7 @@ int main (int argc, char *argv[]) {
 	error_check (parseDouble (&zenith,      argv[4]) != 0) return EXIT_FAILURE;
 	error_check (parseInt    (&localoffset, argv[5]) != 0) return EXIT_FAILURE;
 
-	error_check (set_ava (&coord, cb, (void *) "Hello, World!") != 0)
+	error_check (set_ava (&coord, cb, argv[6]) != 0)
 		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
 }

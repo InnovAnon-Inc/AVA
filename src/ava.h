@@ -8,7 +8,7 @@ extern "C" {
 #include <glitter.h>
 #include <solar.h>
 
-int set_ava (coord_t *restrict coord, stdcb_t cb, stdcb, void *arg)
+int set_ava (coord_t *restrict coord, stdcb_t cb, void *arg)
 __attribute__ ((leaf, nonnull (1, 2), warn_unused_result)) ;
 
 #ifdef __cplusplus

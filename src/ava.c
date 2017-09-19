@@ -66,7 +66,7 @@ int set_ava (
 		strftime(buffer, sizeof (buffer), "%m-%d-%Y  %H:%M:%S", &tv);
 		printf("getnextsunriseorsunset: %s\n", buffer);
 #endif
-		error_check (r_sleept (&timeout) != 0)
+		error_check (r_sleept (&tv) != 0)
 			return -2;
 		error_check (cb (arg) != 0)
 			return -3;

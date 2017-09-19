@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#include <ezparse.h>
+
 #include <ava.h>
 
 __attribute__ ((nonnull (1), nothrow, warn_unused_result))

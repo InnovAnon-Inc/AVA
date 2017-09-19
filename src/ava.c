@@ -59,7 +59,8 @@ int set_ava (
 		double minrs;
 		struct timeval tv;
 		tv.tv_usec = 0;
-		minrs = minf (rst.rise, rst.set);
+		if (rst.set < rst.rise) minrs = rst.set;
+		else                    minrs = rst.rise;
 		ln_get_timet_from_julian (minrs, &(tv.tv_sec));
 #ifdef DEBUG
 		strftime(buffer, sizeof (buffer), "%m-%d-%Y  %H:%M:%S", &tv);

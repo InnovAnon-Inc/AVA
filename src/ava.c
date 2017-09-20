@@ -3,10 +3,13 @@
 #include <time.h>
 #endif
 
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wpadded"
 #include <libnova/solar.h>
 #include <libnova/julian_day.h>
 #include <libnova/rise_set.h>
 #include <libnova/transform.h>
+	#pragma GCC diagnostic pop
 
 #include <restart.h>
 

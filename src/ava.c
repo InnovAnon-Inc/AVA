@@ -31,13 +31,13 @@ static void print_date (
 
 __attribute__ ((nonnull (1), nothrow))
 static void init_ln_zonedate (struct ln_zonedate *restrict rise) {
-	/*rise.years = 0;
-	rise.months = 1;
-	rise.days = 0;*/
-	rise.hours   = 0;
-	rise.minutes = 0;
-	rise.seconds = 0;
-	rise.gmtoff  = 86400 + (-5 * 60 * 60);
+	/*rise->years = 0;
+	rise->months = 1;
+	rise->days = 0;*/
+	rise->hours   = 0;
+	rise->minutes = 0;
+	rise->seconds = 0;
+	rise->gmtoff  = 86400 + (-5 * 60 * 60);
 }
 #endif
 

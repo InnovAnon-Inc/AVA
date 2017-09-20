@@ -79,6 +79,31 @@ int set_ava (
 		return -1;
 	} /*else {*/
 #ifndef NDEBUG
+struct ln_zonedate
+{
+    int years; 		/*!< Years. All values are valid */
+    int months;		/*!< Months. Valid values : 1 (January) - 12 (December) */
+    int days; 		/*!< Days. Valid values 1 - 28,29,30,31 Depends on month.*/
+    int hours; 		/*!< Hours. Valid values 0 - 23. */
+    int minutes; 	/*!< Minutes. Valid values 0 - 59. */
+    double seconds;	/*!< Seconds. Valid values 0 - 59.99999.... */
+    long gmtoff;        /*!< Timezone offset. Seconds east of UTC. Valid values 0..86400 */
+};
+	/*rise->years = 0;
+	rise->months = 1;
+	rise->days = 0;*/
+	rise->hours   = 0;
+	rise->minutes = 0;
+	rise->seconds = 0;
+	rise->gmtoff  = 86400 + (-5 * 60 * 60);
+	transit->hours   = 0;
+	transit->minutes = 0;
+	transit->seconds = 0;
+	transit->gmtoff = rise->gmtoff;
+	set->hours   = 0;
+	set->minutes = 0;
+	set->seconds = 0;
+	set->gmtoff  = rise->gmtoff;
 	ln_get_local_date (rst.rise, &rise);
 	ln_get_local_date (rst.transit, &transit);
 	ln_get_local_date (rst.set, &set);

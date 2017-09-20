@@ -16,10 +16,10 @@ int main (int argc, char *argv[]) {
 	struct ln_lnlat_posn coord;
 	double zenith;
 	int localoffset;
-	error_check (argc != 4) {
+	/*error_check (argc != 4) {
 		printf ("Usage: %s <latitude> <longitude> <message>\n", argv[0]);
 		return EXIT_FAILURE;
-	}
+	}*/
 
 	error_check (parseDouble (&(coord.lat),  argv[1]) != 0) return EXIT_FAILURE;
 	error_check (parseDouble (&(coord.lng), argv[2]) != 0) return EXIT_FAILURE;

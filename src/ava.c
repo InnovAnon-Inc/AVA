@@ -85,6 +85,9 @@ int set_ava (
 #endif
 
 	/* rise, set and transit */
+	init_ln_zonedate (&(rst.rise));
+	init_ln_zonedate (&(rst.transit));
+	init_ln_zonedate (&(rst.set));
 	if (ln_get_solar_rst (JD, observer, &rst) == 1) {
 #ifndef NDEBUG
 		printf ("Sun is circumpolar\n");

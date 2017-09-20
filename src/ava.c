@@ -48,6 +48,72 @@ static void init_ln_rst_time (struct ln_rst_time *restrict rise) {
 	rise->transit = 0;
 }*/
 
+
+
+
+
+
+__attribute__ ((leaf, nonnull (1, 2), warn_unused_result))
+int set_ava (
+	struct ln_lnlat_posn *restrict observer,
+	stdcb_t cb,
+	void *arg) {
+	struct ln_equ_posn equ;
+	struct ln_rst_time rst;
+	struct ln_zonedate rise, set, transit;
+	struct ln_helio_posn pos;
+	double JD;
+
+	/* observers location (Edinburgh), used to calc rst */
+	/*observer.lat = 55.92;*/ /* 55.92 N */
+	/*observer.lng = -3.18;*/ /* 3.18 W */
+
+	/* get Julian day from local time */
+	JD = ln_get_julian_from_sys();
+	printf ("JD %f\n", JD);
+
+	/* geometric coordinates */
+	ln_get_solar_geom_coords (JD, &pos);
+	printf("Solar Coords longitude (deg) %f\n", pos.L);
+	printf("             latitude (deg) %f\n", pos.B);
+	printf("             radius vector (AU) %f\n", pos.R);
+
+	/* ra, dec */
+	ln_get_solar_equ_coords (JD, &equ);
+	printf("Solar Position RA %f\n", equ.ra);
+	printf("               DEC %f\n", equ.dec);
+
+	/* rise, set and transit */
+	if (ln_get_solar_rst (JD, observer, &rst) == 1)
+		printf ("Sun is circumpolar\n");
+	else {
+		ln_get_local_date (rst.rise, &rise);
+		ln_get_local_date (rst.transit, &transit);
+		ln_get_local_date (rst.set, &set);
+		print_date ("Rise", &rise);
+		print_date ("Transit", &transit);
+		print_date ("Set", &set);
+	}
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#ifdef NWTF
 __attribute__ ((leaf, nonnull (1, 2), warn_unused_result))
 /*int set_ava (coord_t *restrict coord, stdcb_t cb, void *arg) {*/
 int set_ava (
@@ -149,3 +215,4 @@ int set_ava (
 	return 0;
 	*/
 }
+#endif

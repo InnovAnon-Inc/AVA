@@ -1,8 +1,11 @@
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wpadded"
 #include <stdio.h>
 #include <libnova/solar.h>
 #include <libnova/julian_day.h>
 #include <libnova/rise_set.h>
 #include <libnova/transform.h>
+	#pragma GCC diagnostic pop
 
 static void print_date (char const title[], struct ln_zonedate* date)
 {

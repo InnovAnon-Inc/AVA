@@ -14,8 +14,8 @@ static int cb (void *arg) {
 __attribute__ ((nonnull (2), nothrow))
 int main (int argc, char *argv[]) {
 	struct ln_lnlat_posn coord;
-	double zenith;
-	int localoffset;
+	/*double zenith;
+	int localoffset;*/
 	/*error_check (argc != 4) {
 		printf ("Usage: %s <latitude> <longitude> <message>\n", argv[0]);
 		return EXIT_FAILURE;

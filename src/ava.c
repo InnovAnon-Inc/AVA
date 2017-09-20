@@ -17,7 +17,7 @@ int set_ava (
 	struct ln_lnlat_posn *restrict observer,
 	stdcb_t cb,
 	void *arg) {
-#ifdef DEBUG
+#ifndef NDEBUG
 	char buffer[32];
 #endif
 	struct ln_equ_posn equ;

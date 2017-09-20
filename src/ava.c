@@ -29,24 +29,24 @@ static void print_date (
 	printf (" Seconds : %f\n", date->seconds);
 }
 
-__attribute__ ((nonnull (1), nothrow))
-static void init_ln_zonedate (struct ln_zonedate *restrict rise) {
+/*__attribute__ ((nonnull (1), nothrow))
+static void init_ln_zonedate (struct ln_zonedate *restrict rise) {*/
 	/*rise->years = 0;
 	rise->months = 1;
 	rise->days = 0;*/
-	rise->hours   = 0;
+	/*rise->hours   = 0;
 	rise->minutes = 0;
 	rise->seconds = 0;
 	rise->gmtoff  = 86400 + (-5 * 60 * 60);
-}
+}*/
 #endif
 
-__attribute__ ((nonnull (1), nothrow))
+/*__attribute__ ((nonnull (1), nothrow))
 static void init_ln_rst_time (struct ln_rst_time *restrict rise) {
 	rise->rise    = 0;
 	rise->set     = 0;
 	rise->transit = 0;
-}
+}*/
 
 __attribute__ ((leaf, nonnull (1, 2), warn_unused_result))
 /*int set_ava (coord_t *restrict coord, stdcb_t cb, void *arg) {*/
@@ -92,7 +92,6 @@ int set_ava (
 #endif
 
 	/* rise, set and transit */
-	init_ln_rst_time (&rst);
 	if (ln_get_solar_rst (JD, observer, &rst) == 1) {
 #ifndef NDEBUG
 		printf ("Sun is circumpolar\n");
@@ -100,16 +99,14 @@ int set_ava (
 		return -1;
 	} /*else {*/
 #ifndef NDEBUG
-	init_ln_zonedate (&rise);
-	/*init_ln_zonedate (&transit);*/
-	init_ln_zonedate (&set);
 	ln_get_local_date (rst.rise, &rise);
-	/*ln_get_local_date (rst.transit, &transit);*/
+	ln_get_local_date (rst.transit, &transit);
 	ln_get_local_date (rst.set, &set);
 	print_date ("Rise", &rise);
-	/*print_date ("Transit", &transit);*/
+	print_date ("Transit", &transit);
 	print_date ("Set", &set);
 #endif
+/*
 	tv.tv_usec = 0;
 	if (rst.set < rst.rise) minrs = rst.set;
 	else                    minrs = rst.rise;
@@ -122,6 +119,7 @@ int set_ava (
 		return -2;
 	error_check (cb (arg) != 0)
 		return -3;
+*/
 	return 0;
 	/*}*/
 	/*

@@ -30,54 +30,63 @@ int set_ava (
 	struct ln_helio_posn pos;
 	double JD;
 
+	double minrs;
+	struct timeval tv;
+
 	/* observers location (Edinburgh), used to calc rst */
 	/*observer.lat = 55.92;*/ /* 55.92 N */
 	/*observer.lng = -3.18;*/ /* 3.18 W */
 
 	/* get Julian day from local time */
 	JD = ln_get_julian_from_sys();
-	/*printf ("JD %f\n", JD);*/
+#ifndef NDEBUG
+	printf ("JD %f\n", JD);
+#endif
 
 	/* geometric coordinates */
 	ln_get_solar_geom_coords (JD, &pos);
-	/*printf("Solar Coords longitude (deg) %f\n", pos.L);
+#ifndef NDEBUG
+	printf("Solar Coords longitude (deg) %f\n", pos.L);
 	printf("             latitude (deg) %f\n", pos.B);
-	printf("             radius vector (AU) %f\n", pos.R);*/
+	printf("             radius vector (AU) %f\n", pos.R);
+#endif
 
 	/* ra, dec */
 	ln_get_solar_equ_coords (JD, &equ);
-	/*printf("Solar Position RA %f\n", equ.ra);
-	printf("               DEC %f\n", equ.dec);*/
+#ifndef NDEBUG
+	printf("Solar Position RA %f\n", equ.ra);
+	printf("               DEC %f\n", equ.dec);
+#endif
 
 	/* rise, set and transit */
-	if (ln_get_solar_rst (JD, observer, &rst) == 1)
-		/*printf ("Sun is circumpolar\n");*/
-		return -1;
-	else {
-		/*ln_get_local_date (rst.rise, &rise);
-		ln_get_local_date (rst.transit, &transit);
-		ln_get_local_date (rst.set, &set);
-		print_date ("Rise", &rise);
-		print_date ("Transit", &transit);
-		print_date ("Set", &set);*/
-		double minrs;
-		struct timeval tv;
-		tv.tv_usec = 0;
-		if (rst.set < rst.rise) minrs = rst.set;
-		else                    minrs = rst.rise;
-		ln_get_timet_from_julian (minrs, &(tv.tv_sec));
+	if (ln_get_solar_rst (JD, observer, &rst) == 1) {
 #ifndef NDEBUG
-		strftime(buffer, sizeof (buffer), "%m-%d-%Y  %H:%M:%S", localtime (&(tv.tv_sec)));
-		printf("getnextsunriseorsunset: %s\n", buffer);
+		printf ("Sun is circumpolar\n");
 #endif
-		error_check (r_sleept (&tv) != 0)
-			return -2;
-		error_check (cb (arg) != 0)
-			return -3;
-		return 0;
-	}
-
+		return -1;
+	} /*else {*/
+#ifndef NDEBUG
+	ln_get_local_date (rst.rise, &rise);
+	ln_get_local_date (rst.transit, &transit);
+	ln_get_local_date (rst.set, &set);
+	print_date ("Rise", &rise);
+	print_date ("Transit", &transit);
+	print_date ("Set", &set);
+#endif
+	tv.tv_usec = 0;
+	if (rst.set < rst.rise) minrs = rst.set;
+	else                    minrs = rst.rise;
+	ln_get_timet_from_julian (minrs, &(tv.tv_sec));
+#ifndef NDEBUG
+	strftime(buffer, sizeof (buffer), "%m-%d-%Y  %H:%M:%S", localtime (&(tv.tv_sec)));
+	printf("getnextsunriseorsunset: %s\n", buffer);
+#endif
+	error_check (r_sleept (&tv) != 0)
+		return -2;
+	error_check (cb (arg) != 0)
+		return -3;
 	return 0;
+	/*}*/
 	/*
 	struct timeval timeout;
 #ifdef DEBUG

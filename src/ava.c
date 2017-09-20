@@ -41,6 +41,13 @@ static void init_ln_zonedate (struct ln_zonedate *restrict rise) {
 }
 #endif
 
+__attribute__ ((nonnull (1), nothrow))
+static void init_ln_rst_time (struct ln_rst_time *restrict rise) {
+	rise->rise    = 0;
+	rise->set     = 0;
+	rise->transit = 0;
+}
+
 __attribute__ ((leaf, nonnull (1, 2), warn_unused_result))
 /*int set_ava (coord_t *restrict coord, stdcb_t cb, void *arg) {*/
 int set_ava (
@@ -85,9 +92,7 @@ int set_ava (
 #endif
 
 	/* rise, set and transit */
-	init_ln_zonedate (&(rst.rise));
-	init_ln_zonedate (&(rst.transit));
-	init_ln_zonedate (&(rst.set));
+	init_ln_rst_time (&rst);
 	if (ln_get_solar_rst (JD, observer, &rst) == 1) {
 #ifndef NDEBUG
 		printf ("Sun is circumpolar\n");

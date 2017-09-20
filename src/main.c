@@ -21,7 +21,7 @@ int main (int argc, char *argv[]) {
 		return EXIT_FAILURE;
 	}*/
 
-	error_check (parseDouble (&(coord.lat),  argv[1]) != 0) return EXIT_FAILURE;
+	error_check (parseDouble (&(coord.lat), argv[1]) != 0) return EXIT_FAILURE;
 	error_check (parseDouble (&(coord.lng), argv[2]) != 0) return EXIT_FAILURE;
 	/*error_check (parseDouble (&(coord.altitude),  argv[3]) != 0) return EXIT_FAILURE;*/
 	/*error_check (parseDouble (&zenith,      argv[4]) != 0) return EXIT_FAILURE;*/

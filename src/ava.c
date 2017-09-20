@@ -1,4 +1,4 @@
-#ifdef DEBUG
+#ifndef NDEBUG
 #include <stdio.h>
 #endif
 
@@ -62,7 +62,7 @@ int set_ava (
 		if (rst.set < rst.rise) minrs = rst.set;
 		else                    minrs = rst.rise;
 		ln_get_timet_from_julian (minrs, &(tv.tv_sec));
-#ifdef DEBUG
+#ifndef NDEBUG
 		strftime(buffer, sizeof (buffer), "%m-%d-%Y  %H:%M:%S", &tv);
 		printf("getnextsunriseorsunset: %s\n", buffer);
 #endif

@@ -101,13 +101,13 @@ int set_ava (
 	} /*else {*/
 #ifndef NDEBUG
 	init_ln_zonedate (&rise);
-	init_ln_zonedate (&transit);
+	/*init_ln_zonedate (&transit);*/
 	init_ln_zonedate (&set);
 	ln_get_local_date (rst.rise, &rise);
-	ln_get_local_date (rst.transit, &transit);
+	/*ln_get_local_date (rst.transit, &transit);*/
 	ln_get_local_date (rst.set, &set);
 	print_date ("Rise", &rise);
-	print_date ("Transit", &transit);
+	/*print_date ("Transit", &transit);*/
 	print_date ("Set", &set);
 #endif
 	tv.tv_usec = 0;

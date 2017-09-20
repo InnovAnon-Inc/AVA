@@ -17,7 +17,7 @@
 
 #ifndef NDEBUG
 __attribute__ ((nonnull (1, 2), nothrow))
-static void print_date (char * title, struct ln_zonedate* date) {
+static void print_date (char const title[], struct ln_zonedate* date) {
 	printf ("\n%s\n",title);
 	printf (" Year    : %d\n", date->years);
 	printf (" Month   : %d\n", date->months);

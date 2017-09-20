@@ -28,8 +28,11 @@ int main (int argc, char * argv[])
 	double JD;
 
 	/* observers location (Edinburgh), used to calc rst */
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wunsuffixed-float-constants"
 	observer.lat = 55.92; /* 55.92 N */
 	observer.lng = -3.18; /* 3.18 W */
+	#pragma GCC diagnostic pop
 
 	/* get Julian day from local time */
 	JD = ln_get_julian_from_sys();
@@ -69,7 +72,7 @@ int main (int argc, char * argv[])
 
 
 
-#ifndef NWTF
+#ifdef NWTF
 
 #include <stdio.h>
 #include <stdlib.h>

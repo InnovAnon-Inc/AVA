@@ -5,7 +5,10 @@
 extern "C" {
 #endif
 
+	#pragma GCC diagnostic push
+	#pragma GCC diagnostic ignored "-Wpadded"
 #include <libnova/ln_types.h>
+	#pragma GCC diagnostic pop
 
 #include <glitter.h>
 /*#include <solar.h>

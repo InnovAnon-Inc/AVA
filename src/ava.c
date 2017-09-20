@@ -17,7 +17,9 @@
 
 #ifndef NDEBUG
 __attribute__ ((nonnull (1, 2), nothrow))
-static void print_date (char const title[], struct ln_zonedate* date) {
+static void print_date (
+	char const title[],
+	struct ln_zonedate const *restrict date) {
 	printf ("\n%s\n",title);
 	printf (" Year    : %d\n", date->years);
 	printf (" Month   : %d\n", date->months);
@@ -25,6 +27,17 @@ static void print_date (char const title[], struct ln_zonedate* date) {
 	printf (" Hours   : %d\n", date->hours);
 	printf (" Minutes : %d\n", date->minutes);
 	printf (" Seconds : %f\n", date->seconds);
+}
+
+__attribute__ ((nonnull (1), nothrow))
+static void init_ln_zonedate (struct ln_zonedate *restrict rise) {
+	/*rise.years = 0;
+	rise.months = 1;
+	rise.days = 0;*/
+	rise.hours   = 0;
+	rise.minutes = 0;
+	rise.seconds = 0;
+	rise.gmtoff  = 86400 + (-5 * 60 * 60);
 }
 #endif
 
@@ -79,31 +92,9 @@ int set_ava (
 		return -1;
 	} /*else {*/
 #ifndef NDEBUG
-struct ln_zonedate
-{
-    int years; 		/*!< Years. All values are valid */
-    int months;		/*!< Months. Valid values : 1 (January) - 12 (December) */
-    int days; 		/*!< Days. Valid values 1 - 28,29,30,31 Depends on month.*/
-    int hours; 		/*!< Hours. Valid values 0 - 23. */
-    int minutes; 	/*!< Minutes. Valid values 0 - 59. */
-    double seconds;	/*!< Seconds. Valid values 0 - 59.99999.... */
-    long gmtoff;        /*!< Timezone offset. Seconds east of UTC. Valid values 0..86400 */
-};
-	/*rise->years = 0;
-	rise->months = 1;
-	rise->days = 0;*/
-	rise->hours   = 0;
-	rise->minutes = 0;
-	rise->seconds = 0;
-	rise->gmtoff  = 86400 + (-5 * 60 * 60);
-	transit->hours   = 0;
-	transit->minutes = 0;
-	transit->seconds = 0;
-	transit->gmtoff = rise->gmtoff;
-	set->hours   = 0;
-	set->minutes = 0;
-	set->seconds = 0;
-	set->gmtoff  = rise->gmtoff;
+	init_ln_zonedate (&rise);
+	init_ln_zonedate (&transit);
+	init_ln_zonedate (&set);
 	ln_get_local_date (rst.rise, &rise);
 	ln_get_local_date (rst.transit, &transit);
 	ln_get_local_date (rst.set, &set);

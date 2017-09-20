@@ -64,7 +64,7 @@ int set_ava (
 		else                    minrs = rst.rise;
 		ln_get_timet_from_julian (minrs, &(tv.tv_sec));
 #ifndef NDEBUG
-		strftime(buffer, sizeof (buffer), "%m-%d-%Y  %H:%M:%S", localtime (&tv));
+		strftime(buffer, sizeof (buffer), "%m-%d-%Y  %H:%M:%S", localtime (&(tv.tv_sec)));
 		printf("getnextsunriseorsunset: %s\n", buffer);
 #endif
 		error_check (r_sleept (&tv) != 0)

@@ -27,6 +27,7 @@ static void print_date (
 	printf (" Hours   : %d\n", date->hours);
 	printf (" Minutes : %d\n", date->minutes);
 	printf (" Seconds : %f\n", date->seconds);
+	fflush (stdout);
 }
 
 /*__attribute__ ((nonnull (1), nothrow))
@@ -52,7 +53,7 @@ static void init_ln_rst_time (struct ln_rst_time *restrict rise) {
 
 
 
-
+#ifdef WTF
 __attribute__ ((leaf, nonnull (1, 2), warn_unused_result))
 int set_ava (
 	struct ln_lnlat_posn *restrict observer,
@@ -97,6 +98,7 @@ int set_ava (
 
 	return 0;
 }
+#endif
 
 
 
@@ -112,8 +114,7 @@ int set_ava (
 
 
 
-
-#ifdef NWTF
+/*#ifdef NWTF*/
 __attribute__ ((leaf, nonnull (1, 2), warn_unused_result))
 /*int set_ava (coord_t *restrict coord, stdcb_t cb, void *arg) {*/
 int set_ava (
@@ -140,6 +141,7 @@ int set_ava (
 	JD = ln_get_julian_from_sys();
 #ifndef NDEBUG
 	printf ("JD %f\n", JD);
+	fflush (stdout);
 #endif
 
 	/* geometric coordinates */
@@ -148,6 +150,7 @@ int set_ava (
 	printf("Solar Coords longitude (deg) %f\n", pos.L);
 	printf("             latitude (deg) %f\n", pos.B);
 	printf("             radius vector (AU) %f\n", pos.R);
+	fflush (stdout);
 #endif
 
 	/* ra, dec */
@@ -155,12 +158,14 @@ int set_ava (
 #ifndef NDEBUG
 	printf("Solar Position RA %f\n", equ.ra);
 	printf("               DEC %f\n", equ.dec);
+	fflush (stdout);
 #endif
 
 	/* rise, set and transit */
 	if (ln_get_solar_rst (JD, observer, &rst) == 1) {
 #ifndef NDEBUG
 		printf ("Sun is circumpolar\n");
+		fflush (stdout);
 #endif
 		return -1;
 	} /*else {*/
@@ -172,7 +177,7 @@ int set_ava (
 	print_date ("Transit", &transit);
 	print_date ("Set", &set);
 #endif
-/*
+
 	tv.tv_usec = 0;
 	if (rst.set < rst.rise) minrs = rst.set;
 	else                    minrs = rst.rise;
@@ -180,12 +185,13 @@ int set_ava (
 #ifndef NDEBUG
 	strftime(buffer, sizeof (buffer), "%m-%d-%Y  %H:%M:%S", localtime (&(tv.tv_sec)));
 	printf("getnextsunriseorsunset: %s\n", buffer);
+	fflush (stdout);
 #endif
 	error_check (r_sleept (&tv) != 0)
 		return -2;
 	error_check (cb (arg) != 0)
 		return -3;
-*/
+
 	return 0;
 	/*}*/
 	/*
@@ -215,4 +221,4 @@ int set_ava (
 	return 0;
 	*/
 }
-#endif
+/*#endif*/

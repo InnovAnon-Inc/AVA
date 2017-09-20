@@ -1,3 +1,4 @@
+#ifdef WTF
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wpadded"
 #include <stdio.h>
@@ -63,6 +64,7 @@ int main (int argc, char * argv[])
 
 	return 0;
 }
+#endif
 
 
 
@@ -71,8 +73,7 @@ int main (int argc, char * argv[])
 
 
 
-
-#ifdef NWTF
+/*#ifdef NWTF*/
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -107,4 +108,4 @@ int main (int argc, char *argv[]) {
 		return EXIT_FAILURE;
 	return EXIT_SUCCESS;
 }
-#endif
+/*#endif*/

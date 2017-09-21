@@ -1,3 +1,7 @@
+#if HAVE_CONFIG_H
+#include <config.h>
+#endif
+
 #ifdef WTF
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wpadded"

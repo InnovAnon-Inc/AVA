@@ -9,6 +9,7 @@
 
 	#pragma GCC diagnostic push
 	#pragma GCC diagnostic ignored "-Wpadded"
+	#pragma GCC diagnostic ignored "-Wstrict-prototypes"
 #include <libnova/solar.h>
 #include <libnova/julian_day.h>
 #include <libnova/rise_set.h>

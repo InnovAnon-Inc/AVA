@@ -1,3 +1,3 @@
-SUBDIRS = src
+SUBDIRS = glitter ezparse src
 dist_doc_DATA = README.md
 ACLOCAL_AMFLAGS = -I m4

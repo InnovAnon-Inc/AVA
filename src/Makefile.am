@@ -11,5 +11,5 @@ ava_LDADD = libava.la -lnova -lezparse -lm -lrestart
 #ava_CFLAGS =
 
 AM_CPPFLAGS = -D__STDC_INT64__
-AM_CPPFLAGS += -I $(srcdir)/glitter/src
-AM_CPPFLAGS += -I $(srcdir)/ezparse/src
+AM_CPPFLAGS += -I $(srcdir)/../glitter/src
+AM_CPPFLAGS += -I $(srcdir)/../ezparse/src

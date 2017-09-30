@@ -1,6 +1,13 @@
+include $(top_srcdir)/ezparse/src/Makefile-LIBADD.inc
+include $(top_srcdir)/restart/src/Makefile-LIBADD.inc
+
 # TODO nova
 LIBAVA_LIBADD  = -lnova
-include $(top_srcdir)/ezparse/src/Makefile-LIBADD.inc
+
+if USE_SUBMODULES
 LIBAVA_LIBADD += ../ezparse/src/.libs/libezparse.la $(LIBEZPARSE_LIBADD)
-include $(top_srcdir)/restart/src/Makefile-LIBADD.inc
 LIBAVA_LIBADD += ../restart/src/.libs/librestart.la $(LIBRESTART_LIBADD)
+else
+LIBAVA_LIBADD += -lezparse $(LIBEZPARSE_LIBADD)
+LIBAVA_LIBADD += -lrestart $(LIBRESTART_LIBADD)
+endif

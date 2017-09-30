@@ -6,9 +6,7 @@ AM_CPPFLAGS += -I $(top_srcdir)/glitter/src
 SUBDIRS += ../ezparse
 AM_CPPFLAGS += -I $(top_srcdir)/ezparse/src
 
-LIBAVA_LIBADD  = -lnova
-LIBAVA_LIBADD += ../ezparse/src/.libs/libezparse.la $(LIBEZPARSE_LIBADD)
-LIBAVA_LIBADD += ../restart/src/.libs/librestart.la $(LIBRESTART_LIBADD)
+include Makefile-LIBADD.inc
 
 lib_LTLIBRARIES = libava.la
 include_HEADERS = ava.h

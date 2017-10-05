@@ -16,7 +16,7 @@ AM_CONDITIONAL([USE_SUBMODULES], [test x"$enable_use_submodules" = "xyes"])
 
 AC_CONFIG_MACRO_DIR([m4])
 # TODO add libnova
-AC_CONFIG_SUBDIRS([glitter ezparse])
+#AC_CONFIG_SUBDIRS([glitter ezparse])
 
 AC_CHECK_HEADERS([stdlib.h string.h time.h])
 AC_CHECK_HEADERS([math.h])

@@ -1,12 +1,12 @@
 AM_CPPFLAGS = -D__STDC_INT64__
 
-if USE_SUBMODULES
-SUBDIRS = ../glitter
-AM_CPPFLAGS += -I $(top_srcdir)/glitter/src
-
-SUBDIRS += ../ezparse
-AM_CPPFLAGS += -I $(top_srcdir)/ezparse/src
-endif
+#if USE_SUBMODULES
+#SUBDIRS = ../glitter
+#AM_CPPFLAGS += -I $(top_srcdir)/glitter/src
+#
+#SUBDIRS += ../ezparse
+#AM_CPPFLAGS += -I $(top_srcdir)/ezparse/src
+#endif
 
 include Makefile-LIBADD.inc
 

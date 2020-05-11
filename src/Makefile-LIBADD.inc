@@ -1,7 +1,7 @@
 #include $(top_srcdir)/ezparse/src/Makefile-LIBADD.inc
 #include $(top_srcdir)/restart/src/Makefile-LIBADD.inc
-include ../ezparse/src/Makefile-LIBADD.inc
-include ../restart/src/Makefile-LIBADD.inc
+include ../../ezparse/src/Makefile-LIBADD.inc
+include ../../restart/src/Makefile-LIBADD.inc
 
 # TODO nova
 LIBAVA_LIBADD  = -lnova

@@ -27,6 +27,12 @@ AC_CHECK_LIB([stdlib],[free,memcpy,memset])
 AC_CHECK_LIB([math],[fmod])
 #AC_CHECK_LIB([lunar],[look_for_rise_set,fill_planet_data,load_file_into_memory])
 
+LIBAVA_LIBADD="`PATH=src:$PATH libava_config --libs`"
+AC_SUBST(LIBAVA_LIBADD)
+
+AVA_LIBADD="libava.la `PATH=src:$PATH ava_config --libs`"
+AC_SUBST(AVA_LIBADD)
+
 INNOVANON_WARNINGS([])
 
 AC_OUTPUT

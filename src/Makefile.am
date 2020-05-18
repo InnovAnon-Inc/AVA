@@ -1,16 +1,15 @@
 AM_CPPFLAGS = -D__STDC_INT64__
 
-#include Makefile-LIBADD.inc
-dist_bin_SCRIPTS = libava_config ava_config
-
 lib_LTLIBRARIES =
 bin_PROGRAM     =
 
 lib_LTLIBRARIES += libava.la
 include_HEADERS = ava.h
-libava_la_LIBADD = @LIBAVA_LIBADD@
+libava_la_CPPFLAGS = $(NOVA_CFLAGS) $(EZPARSE_CFLAGS) $(RESTART_CFLAGS)
+libava_la_LIBADD   = $(NOVA_LIBS)   $(EZPARSE_LIBS)   $(RESTART_LIBS)
 
 bin_PROGRAMS += ava
-#ava_LDADD = libava.la $(LIBAVA_LIBADD)
-ava_LDADD = @AVA_LIBADD@
+ava_CPPFLAGS =       $(NOVA_CFLAGS) $(EZPARSE_CFLAGS) $(RESTART_CFLAGS)
+ava_LDADD    = -lava $(NOVA_LIBS)   $(EZPARSE_LIBS)   $(RESTART_LIBS)
 EXTRA_ava_DEPENDENCIES = libava.la
+

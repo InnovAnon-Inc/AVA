@@ -1,0 +1,16 @@
+prefix=@prefix@
+exec_prefix=@exec_prefix@
+libdir=@libdir@
+includedir=@includedir@
+
+#ava_utility=ava
+
+Name: @PACKAGE_NAME@
+Description: ava library
+Version: @PACKAGE_VERSION@
+Libs: -L${libdir} -lava
+Cflags: -I${includedir}
+Requires: glitter
+#Requires.private: -lnova -lezparse -lrestart
+Requires.private: libnova libezparse librestart
+

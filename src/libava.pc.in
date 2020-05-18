@@ -12,5 +12,6 @@ Libs: -L${libdir} -lava
 Cflags: -I${includedir}
 Requires: glitter
 #Requires.private: -lnova -lezparse -lrestart
-Requires.private: libnova libezparse librestart
+#Requires.private: libnova libezparse librestart
+Requires.private: libezparse librestart @NOVA_CFLAGS@ @NOVA_LIBS@
 
